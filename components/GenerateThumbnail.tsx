@@ -120,7 +120,7 @@ const GenerateThumbnail = ({
             <div className="mt-5 w-full max-w-[200px]">
               <Button
                 type="button"
-                className="text-16 bg-cyan-400 py-4 font-bold text-white-1"
+                className="text-16 bg-cyan-600 py-4 font-bold text-white-1"
                 onClick={generateThumbnail}
               >
                 {isImageLoading ? (
