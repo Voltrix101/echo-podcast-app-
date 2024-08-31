@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"pieces.cloudCapabilities": "Blended",
+		"pieces.telemetry": true
+	}
+}
