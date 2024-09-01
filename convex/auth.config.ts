@@ -1,7 +1,7 @@
 const authconfig = {
   providers: [
     {
-      domain: "https://robust-marmoset-94.clerk.accounts.dev",
+      domain: "https://inspired-ram-8.clerk.accounts.dev",
       applicationID: "convex",
     },
   ],

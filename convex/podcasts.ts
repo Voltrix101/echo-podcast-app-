@@ -105,7 +105,7 @@ export const getPodcastBySearch = query({
 
     return await ctx.db
       .query("podcasts")
-      .withSearchIndex("by_description", q => q.search("description" || "title", query))
+      .withSearchIndex("by_description", q => q.search("description", query))
       .take(10);
   },
 });

@@ -156,7 +156,7 @@ const GenerateThumbnail = ({
             </div>
           )}
           <div className="flex flex-col items-center gap-1">
-            <h2 className="text-12 font-bold text-cyan-400">Click to upload</h2>
+            <h2 className="text-12 font-bold text-cyan-500">Click to upload</h2>
             <p className="text-12 font-normal text-gray-1">
               SVG, PNG, JPG or GIF max(1080x1080)
             </p>

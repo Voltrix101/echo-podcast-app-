@@ -171,7 +171,7 @@ const CreatePodcast = () => {
                     className="placeholder:text-gray-1"
                   />
                 </SelectTrigger>
-                <SelectContent className="bg-black-1 text-16 text-white-1 font-bold focus:ring-offset-cyan-400 border-none">
+                <SelectContent className="bg-black-1 text-16 text-white-1 font-bold focus:ring-offset-cyan-500 border-none">
                   {voiceDetails.map((voice) => (
                     <SelectGroup key={voice.provider}>
                       <SelectLabel className="text-white-3 font-light pl-4">

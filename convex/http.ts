@@ -1,18 +1,19 @@
+// ===== reference links =====
+// https://www.convex.dev/templates (open the link and choose for clerk than you will get the github link mentioned below)
+// https://github.dev/webdevcody/thumbnail-critique/blob/6637671d72513cfe13d00cb7a2990b23801eb327/convex/schema.ts
+
 import type { WebhookEvent } from "@clerk/nextjs/server";
 import { httpRouter } from "convex/server";
 import { Webhook } from "svix";
+
 import { internal } from "./_generated/api";
 import { httpAction } from "./_generated/server";
 
-// Define the handler for Clerk webhooks
 const handleClerkWebhook = httpAction(async (ctx, request) => {
-  // Validate incoming webhook request
   const event = await validateRequest(request);
   if (!event) {
     return new Response("Invalid request", { status: 400 });
   }
-
-  // Handle different Clerk webhook events
   switch (event.type) {
     case "user.created":
       await ctx.runMutation(internal.users.createUser, {
@@ -35,12 +36,11 @@ const handleClerkWebhook = httpAction(async (ctx, request) => {
       });
       break;
   }
-
-  // Respond with success
-  return new Response(null, { status: 200 });
+  return new Response(null, {
+    status: 200,
+  });
 });
 
-// Set up the HTTP router and route
 const http = httpRouter();
 
 http.route({
@@ -49,15 +49,13 @@ http.route({
   handler: handleClerkWebhook,
 });
 
-// Function to validate the incoming webhook request
 const validateRequest = async (
   req: Request
 ): Promise<WebhookEvent | undefined> => {
-  const webhookSecret = process.env.sk_test_L005UAFM2TAyFxCbvSGueb3F3bFoYFlkydEOGo8jdg; // Ensure this environment variable is correctly set
+  const webhookSecret = process.env.CLERK_WEBHOOK_SECRET!;
   if (!webhookSecret) {
     throw new Error("CLERK_WEBHOOK_SECRET is not defined");
   }
-
   const payloadString = await req.text();
   const headerPayload = req.headers;
   const svixHeaders = {
@@ -65,16 +63,9 @@ const validateRequest = async (
     "svix-timestamp": headerPayload.get("svix-timestamp")!,
     "svix-signature": headerPayload.get("svix-signature")!,
   };
-
-  try {
-    // Create a new Webhook instance to verify the event
-    const wh = new Webhook(webhookSecret);
-    const event = wh.verify(payloadString, svixHeaders);
-    return event as unknown as WebhookEvent;
-  } catch (error) {
-    console.error("Failed to validate webhook:", error);
-    return undefined;
-  }
+  const wh = new Webhook(webhookSecret);
+  const event = wh.verify(payloadString, svixHeaders);
+  return event as unknown as WebhookEvent;
 };
 
 export default http;

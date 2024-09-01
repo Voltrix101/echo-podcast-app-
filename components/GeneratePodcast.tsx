@@ -10,14 +10,12 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useUploadFiles } from "@xixixao/uploadstuff/react";
 
-function getConvexApibyProvider(provider: string = "Openai") {
-  return provider === "Openai"
-    ? api.openai
-    : provider === "Eleven Labs"
-      ? api.elevenlabs
-      : provider === "Unreal Speech"
-        ? api.unreal
-        : api.openai;
+function getConvexApibyProvider(provider: string = "Eleven Labs") {
+  return provider === "Eleven Labs"
+    ? api.elevenlabs
+    : provider === "Unreal Speech"
+      ? api.unreal
+      : api.elevenlabs; // Default to api.elevenlabs if no match is found
 }
 
 const useGeneratePodcast = ({

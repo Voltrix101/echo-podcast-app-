@@ -20,7 +20,7 @@ export default function ConvexClerkProvider({
       appearance={{
         layout: {
           socialButtonsVariant: "iconButton",
-          logoImageUrl: "/icons/auth-logo.svg",
+          logoImageUrl: "/icons/logo.svg",
         },
         variables: {
           colorBackground: "#15171c",

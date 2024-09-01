@@ -18,7 +18,7 @@ const Header = ({
       ) : (
         <div />
       )}
-      <Link href="/discover" className="text-16 font-semibold text-cyan-400">
+      <Link href="/discover" className="text-16 font-semibold text-cyan-500">
         See All
       </Link>
     </header>
